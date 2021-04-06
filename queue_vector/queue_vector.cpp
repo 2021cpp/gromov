@@ -3,19 +3,15 @@
 #include "catch.hpp""
 #include <vector> 
 #include <iostream>
-
 template<class T>
-
 class Queue
 {
 public:
     std::vector<T> d_back, d_front;
-
     void put(T a)
     {
         d_back.push_back(a);
     }
-
     void get()
     {
         if (d_front.size() > 0)
@@ -34,7 +30,6 @@ public:
             d_front.pop_back();
         }
     }
-
     const T& operator[](uint32_t i)
     {
         if (i >= d_front.size())
@@ -46,14 +41,11 @@ public:
             return d_front[d_front.size() - i - 1];
         }
     }
-
     uint32_t Size()
     {
         return d_back.size() + d_front.size();
     }
-
 };
-
 TEST_CASE("Benchmark") {
     BENCHMARK("Plus 1000, minus 1000")
     {
