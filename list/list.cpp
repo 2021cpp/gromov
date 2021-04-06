@@ -1,4 +1,4 @@
-#define CATCH_CONFIG_MAIN
+﻿#define CATCH_CONFIG_MAIN
 #include <iostream>
 #include "catch.hpp"
 
@@ -6,8 +6,8 @@ typedef int TValue;
 
 class TNode {
 public:
-        TNode* prev, * next;
-        TValue val;
+    TNode* prev, * next;
+    TValue val;
 
 
     TNode* find(TNode* root, const TValue& value)
@@ -22,7 +22,7 @@ public:
             cur = cur->next;
             if (cur == root)
             {
-                return nullptr;      
+                return nullptr;
             }
         }
     }
