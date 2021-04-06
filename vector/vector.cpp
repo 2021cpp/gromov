@@ -3,15 +3,15 @@
 
 
 template<class T>
-class Vector 
+class Vector
 {
 public:
-    Vector() : sz(0), mem_sz(16) 
+    Vector() : sz(0), mem_sz(16)
     {
         m_str = new T[mem_sz];
     }
 
-    void PushBack(const T& elem) 
+    void PushBack(const T& elem)
     {
         if (sz >= mem_sz)
         {
@@ -21,7 +21,7 @@ public:
         sz++;
     }
 
-    void PopBack() 
+    void PopBack()
     {
         if (sz == 0)
         {
@@ -33,12 +33,12 @@ public:
         }
     }
 
-    ~Vector() 
+    ~Vector()
     {
         delete[] m_str;
     }
 
-    Vector(Vector&& outer) 
+    Vector(Vector&& outer)
     {
         sz = outer.sz;
         mem_sz = outer.mem_sz;
@@ -59,7 +59,7 @@ public:
         return m_str[i];
     }
 
-    Vector& operator=(Vector&& outer) 
+    Vector& operator=(Vector&& outer)
     {
         Vector eq(std::move(outer));
         std::swap(sz, eq.sz);
@@ -68,7 +68,7 @@ public:
         return eq;
     }
 
-    Vector& operator=(const Vector& outer) 
+    Vector& operator=(const Vector& outer)
     {
         Vector eq(outer);
         std::swap(sz, eq.sz);
@@ -77,21 +77,21 @@ public:
         return eq;
     }
 
-    Vector(const Vector& outer) : sz(outer.sz), mem_sz(outer.sz) 
+    Vector(const Vector& outer) : sz(outer.sz), mem_sz(outer.sz)
     {
         m_str = new T[mem_sz];
-        for (int32_t i = 0; i < mem_sz; i++) 
+        for (int32_t i = 0; i < mem_sz; i++)
         {
             m_str[i] = outer.m_str[i];
         }
     }
 
-    const T* BeginV() 
+    const T* BeginV()
     {
         return m_str;
     }
 
-    const T* EndV() 
+    const T* EndV()
     {
         return (m_str + sz - 1);
     }
@@ -100,10 +100,10 @@ private:
     int32_t sz, mem_sz;
     T* m_str;
 
-    void Double_Memory() 
+    void Double_Memory()
     {
         T* new_m_str = new T[2 * mem_sz];
-        for (int32_t i = 0; i < mem_sz; i++) 
+        for (int32_t i = 0; i < mem_sz; i++)
         {
             new_m_str[i] = m_str[i];
         }
@@ -112,7 +112,7 @@ private:
 };
 
 
-TEST_CASE("Создание и заполнение вектора") 
+TEST_CASE("Создание и заполнение вектора")
 {
     Vector<int32_t> test;
     size_t i;
@@ -149,7 +149,7 @@ TEST_CASE("Копирование веторов") {
     Vector<int32_t> test;
     size_t i;
 
-    for (i = 0; i < 3; i++) 
+    for (i = 0; i < 3; i++)
     {
         test.PushBack(i);
     }
@@ -167,7 +167,7 @@ TEST_CASE("Перемещение векторов") {
     Vector<int32_t> test;
     size_t i;
 
-    for (i = 0; i < 3; i++) 
+    for (i = 0; i < 3; i++)
     {
         test.PushBack(i);
     }
