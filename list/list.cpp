@@ -84,7 +84,7 @@ public:
     }
 };
 
-TEST_CASE("тест")
+TEST_CASE("ГІГҐГ±ГІ")
 {
     TNode* head = nullptr;
     TValue the_very_first = 1u;
