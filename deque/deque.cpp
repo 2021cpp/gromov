@@ -270,3 +270,4 @@ TEST_CASE("Ïåðåìåùåíèå deque") {
     REQUIRE(another_test[2] == 2);
     REQUIRE(another_test.Size() == 3);
 }
+//comment for pull request
