@@ -1,0 +1,3 @@
+C:/Users/gromo/Documents/C++/CMake/QuickSort/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/gromo/Documents/C++/CMake/QuickSort/out/build/x64-Debug/CMakeFiles/QuickSort.dir
+C:/Users/gromo/Documents/C++/CMake/QuickSort/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
