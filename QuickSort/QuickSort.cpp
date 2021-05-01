@@ -1,26 +1,8 @@
-﻿#include "QuickSort.h"
+﻿#define CATCH_CONFIG_MAIN
+#define CATCH_CONFIG_ENABLE_BENCHMARKING
 
-template< class iterator >
-
-void Quick_Sort(iterator a, int n)
-{
-    int mid = (n + 1) / 2;
-    int right_pos = 0;
-    std::swap(*a, *(a + mid - 1));
-    for (int i = 0; i < n; ++i) {
-        if (*(a + i) < *a) {
-            std::swap(*(a + right_pos + 1), *(a + i));
-            right_pos += 1;
-        }
-    }
-    std::swap(*(a + right_pos), *a);
-    if (right_pos > 0)
-        Quick_Sort(a, right_pos);
-    if (right_pos < n - 1)
-        Quick_Sort(a + right_pos + 1, n - right_pos - 1);
-    return;
-}
-
+#include "catch.hpp"
+#include "QuickSort.h"
 
 TEST_CASE("Benchmark for QuickSort")
 {
@@ -31,7 +13,7 @@ TEST_CASE("Benchmark for QuickSort")
         {
             a.push_back(std::rand() / ((RAND_MAX + 1) / 1000));
         }
-        Quick_Sort(a.begin(), 1000);
+        QuickSort(a.begin(), 1000);
     };
     BENCHMARK("Sort 1000 sorted")
     {
@@ -40,7 +22,7 @@ TEST_CASE("Benchmark for QuickSort")
         {
             a.push_back(i);
         }
-        Quick_Sort(a.begin(), 1000);
+        QuickSort(a.begin(), 1000);
     };
     BENCHMARK("Sort 1000 almost sorted")
     {
@@ -53,7 +35,7 @@ TEST_CASE("Benchmark for QuickSort")
         {
             a.push_back(std::rand() / ((RAND_MAX + 1) / 1000));
         }
-        Quick_Sort(a.begin(), 1000);
+        QuickSort(a.begin(), 1000);
     };
     BENCHMARK("Sort 1000 with lots equal")
     {
@@ -66,6 +48,6 @@ TEST_CASE("Benchmark for QuickSort")
         {
             a.push_back(std::rand() / ((RAND_MAX + 1) / 1000));
         }
-        Quick_Sort(a.begin(), 1000);
+        QuickSort(a.begin(), 1000);
     };
 }
