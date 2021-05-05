@@ -1,33 +1,7 @@
 ﻿#define CATCH_CONFIG_MAIN
 #define CATCH_CONFIG_ENABLE_BENCHMARKING
 #include "catch.hpp"
-#include <iostream>
-#include "deque.cpp"
-template<class T>
-
-class Queue {
-public:
-    Deque <T> deq;
-
-    void PushBack(const T& el) {
-        deq.Push_Back(el);
-    }
-
-    const T& operator[](size_t i) {
-        return deq[i];
-    }
-
-    size_t Size() const {
-        return deq.Size();
-    }
-
-
-
-    void PopFront() {
-        deq.Pop_Front();
-    }
-};
-
+#include "queue_deque.h"
 
 TEST_CASE("Создание и заполнение очереди")
 {

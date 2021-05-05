@@ -1,6 +1,4 @@
-﻿#define CATCH_CONFIG_MAIN
-#include <iostream>
-#include "catch.hpp"
+﻿#include <iostream>
 
 template <class T>
 class Deque {
