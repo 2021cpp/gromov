@@ -1,1 +1,1 @@
-C++ programing courese MIPT spring 2021
+C++ programing courese MIPT 2021
