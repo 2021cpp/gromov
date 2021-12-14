@@ -3,12 +3,11 @@
 #include <iostream>
 #include <exception>
 
-template<class T>
+template <class T>
 
 class Try
 {
 private:
-    bool error;
     T value;
     std::exception_ptr exception;
 
@@ -17,11 +16,11 @@ public:
     Try(const T&);
     Try(T&&);
 
-    template<class TException>
+    template <class TException>
     Try(const TException&);
     Try(std::exception_ptr);
 
-    T Value();
+    const T& Value();
     bool Error();
 
     ~Try() = default;

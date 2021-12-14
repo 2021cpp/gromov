@@ -1,73 +1,56 @@
 #include "try.hpp"
 
-template<class T>
+template <class T>
 
-Try<T>::Try() : error(false)
-{
-    try
-    {
-        value = T();
-    } 
-    catch (...)
-    {
-        error = true;
-        exception = std::current_exception();
-    }
-};
+Try<T>::Try(): exception(nullptr) {};
 
-template<class T>
+template <class T>
 
-Try<T>::Try(const T& val) : error(false)
+Try<T>::Try(const T &val) 
 {
     try
     {
         value = val;
-    } 
-    catch (...)
+    }
+    catch(...)
     {
-        error = true;
         exception = std::current_exception();
     }
-};
+}
 
-template<class T>
+template <class T>
 
 Try<T>::Try(T&& val)
 {
     try
     {
         value = val;
-    } 
-    catch (...)
+    }
+    catch(...)
     {
-        error = true;
         exception = std::current_exception();
     }
-};
+}
 
 template<class T>
 template<class TException>
 
-Try<T>::Try(const TException& excep) : error(true), exception(std::make_exception_ptr(excep)) {};
+Try<T>::Try(const TException& excep) : exception(std::make_exception_ptr(excep)) {};
 
-template<class T>
+template <class T>
 
-Try<T>::Try(std::exception_ptr excep) : error(true), exception(excep) {};
+Try<T>::Try(std::exception_ptr excep): exception(excep) {};
 
-template<class T>
+template <class T>
 
-T Try<T>::Value()
+const T& Try<T>::Value() 
 {
-    if (Error())
-    {
-        std::rethrow_exception(exception);
-    }
-    return value;
-};
+    if (!Error()) return value;
+}
 
-template<class T>
+template <class T>
 
 bool Try<T>::Error()
 {
-    return error;
-};
+    return exception == nullptr;
+}
