@@ -6,11 +6,19 @@ Optional<T>::Optional(): empty(true) {}
 
 template<class T>
 
-Optional<T>::Optional(const T& val) : value(val), empty(false) {}
+Optional<T>::Optional(const T& val): value(val), empty(false) {}
 
 template<class T>
 
-Optional<T>::Optional(const Optional<T>& other)
+Optional<T>::Optional(const Optional<T>& other): value(other.value), empty(false)
+{
+    other.value = nullptr;
+    other.empty = true;
+}
+
+template<class T>
+
+Optional<T>::Optional(Optional<T>&& other)
 {
     value = other.value;
     empty = other.empty;
