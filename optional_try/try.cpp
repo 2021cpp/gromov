@@ -46,6 +46,8 @@ template <class T>
 const T& Try<T>::Value() 
 {
     if (!Error()) return value;
+    
+    else throw exception;
 }
 
 template <class T>

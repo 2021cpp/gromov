@@ -20,8 +20,13 @@ template<class T>
 
 Optional<T>::Optional(Optional<T>&& other)
 {
-    value = other.value;
-    empty = other.empty;
+    if(!other.empty)
+    {
+        value = other.value;
+        empty = other.empty;
+    }
+    
+    else empty = true;
 }
 
 template<class T>
@@ -59,7 +64,7 @@ template<class T>
 T& Optional<T>::Value()
 {
     if(empty)
-        throw "There is no value :'(";
+        throw std::runtime_error("There is no value :'(");
     return value;
 }
 
