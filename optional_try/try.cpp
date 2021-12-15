@@ -47,7 +47,7 @@ const T& Try<T>::Value()
 {
     if (!Error()) return value;
     
-    else throw exception;
+    else throw std::rethrow_exception(exception);
 }
 
 template <class T>

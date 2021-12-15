@@ -12,8 +12,16 @@ template<class T>
 
 Optional<T>::Optional(const Optional<T>& other): value(other.value), empty(false)
 {
-    other.value = nullptr;
-    other.empty = true;
+    if(!other.empty)
+    {
+        value = other.value;
+        empty = false;
+
+        other.value = nullptr;
+        other.empty = true;
+    }
+
+    else empty = true;
 }
 
 template<class T>
@@ -22,8 +30,7 @@ Optional<T>::Optional(Optional<T>&& other)
 {
     if(!other.empty)
     {
-        value = other.value;
-        empty = other.empty;
+        *this = std::move(other);
     }
     
     else empty = true;
@@ -33,23 +40,37 @@ template<class T>
 
 Optional<T>& Optional<T>::operator=(const Optional<T>& other)
 {
-    if(this == &other) return *this;
-    Optional copy(other);
-    value = copy.value;
-    empty = copy.empty;
-    return *this;
+    if(!other.empty)
+    {
+        if(this == &other) return *this;
+        value = other.value;
+        empty = false;
+        return *this;
+    }
+
+    else
+    {
+        empty = true;
+        return *this;
+    }
 }
 
 template<class T>
 
 Optional<T>& Optional<T>::operator=(Optional<T>&& other)
 {
-    if(this == &other) return *this;
-    Optional copy(std::move(other));
+    if(!other.empty)
+    {
+        if(this == &other) return *this;
+        *this = std::move(other);
+        return *this;
+    }
 
-    std::swap(value, copy.value);
-    std::swap(empty, copy.emp);
-    return *this;
+    else
+    {
+        empty = true;
+        return *this;
+    }
 }
 
 template<class T>
